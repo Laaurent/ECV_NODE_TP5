@@ -19,6 +19,13 @@ module.exports = {
          },
          author: {
             type: Sequelize.UUID,
+            references: {
+               model: {
+                  tableName: "users",
+               },
+               key: "id",
+            },
+            allowNull: false,
          },
          createdAt: {
             allowNull: false,

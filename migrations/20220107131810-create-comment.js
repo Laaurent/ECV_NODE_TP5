@@ -8,6 +8,16 @@ module.exports = {
             primaryKey: true,
             type: Sequelize.UUID,
          },
+         post: {
+            type: Sequelize.UUID,
+            references: {
+               model: {
+                  tableName: "posts",
+               },
+               key: "id",
+            },
+            allowNull: false,
+         },
          content: {
             type: Sequelize.TEXT,
          },
@@ -16,6 +26,13 @@ module.exports = {
          },
          author: {
             type: Sequelize.UUID,
+            references: {
+               model: {
+                  tableName: "users",
+               },
+               key: "id",
+            },
+            allowNull: false,
          },
          createdAt: {
             allowNull: false,
