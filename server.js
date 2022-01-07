@@ -1,22 +1,18 @@
-const exports = require("express");
+const express = require("express");
+const port = 3000;
 
 const app = express();
 
-const { User } = require("./sequelize");
+app.use(express.json());
+
+require("./routes/routes")(app);
+require("./routes/comment.routes")(app);
+require("./routes/post.routes")(app);
+require("./routes/role.routes")(app);
+require("./routes/user.routes")(app);
 
 app.get("/", (req, res) => {
    res.send("Hello, world!");
-});
-
-app.get("/create", async (req, res) => {
-   const newUser = await User.create({
-      username: "Jean",
-      lastname: "Doe",
-      email: "JeanDoe@email.com",
-      username: "JeanD",
-      github: "www.google.fr",
-   });
-   res.json(newUser);
 });
 
 app.listen(port, () => {
